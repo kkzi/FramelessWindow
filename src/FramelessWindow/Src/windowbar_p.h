@@ -1,4 +1,4 @@
-// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
+﻿// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
 // Copyright (C) 2021-2023 wangwenx190 (Yuhang Zhao)
 // SPDX-License-Identifier: Apache-2.0
 
@@ -9,9 +9,11 @@
 
 #include "windowbar.h"
 
-namespace QWK {
+namespace QWK
+{
 
-    class WindowBarPrivate {
+    class WindowBarPrivate
+    {
         Q_DECLARE_PUBLIC(WindowBar)
     public:
         WindowBarPrivate();
@@ -25,7 +27,8 @@ namespace QWK {
         bool autoTitle;
         bool autoIcon;
 
-        enum WindowBarItem {
+        enum WindowBarItem
+        {
             IconButton,
             MenuWidget,
             TitleLabel,
@@ -36,7 +39,8 @@ namespace QWK {
 
         QHBoxLayout *layout;
 
-        inline QWidget *widgetAt(int index) const {
+        inline QWidget *widgetAt(int index) const
+        {
             return layout->itemAt(index)->widget();
         }
 
@@ -44,7 +48,8 @@ namespace QWK {
 
         QWidget *takeWidgetAt(int index);
 
-        inline void insertDefaultSpace(int index) {
+        inline void insertDefaultSpace(int index)
+        {
             layout->insertSpacerItem(index, new QSpacerItem(0, 0));
         }
 
@@ -52,6 +57,6 @@ namespace QWK {
         Q_DISABLE_COPY(WindowBarPrivate)
     };
 
-}
+}  // namespace QWK
 
-#endif // WINDOWBARPRIVATE_H
+#endif  // WINDOWBARPRIVATE_H

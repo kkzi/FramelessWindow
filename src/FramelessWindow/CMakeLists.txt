@@ -1,4 +1,4 @@
-project(FramelessWindow)
+﻿project(FramelessWindow)
 
 set(_core_src
     Src/core/qwkglobal.h
@@ -102,17 +102,19 @@ elseif(APPLE)
 endif()
 
 set(SRCS 
+    Include/FramelessWindow/FramelessWindow.h
+    Include/FramelessWindow/FramelessDialog.h
     Src/windowbar.h
     Src/windowbar.cpp
     Src/windowbar_p.h
     Src/windowbutton.h
     Src/windowbutton.cpp
     Src/windowbutton_p.h
-    Include/FramelessWindow/FramelessWindow.h
+    Src/FramelessHelper.hpp
+    Src/FramelessDialog.cpp
     Src/FramelessWindow.cpp
 )
 
-include_directories(Include)
-
 add_library(${PROJECT_NAME} STATIC ${_core_src} ${_widgets_src} ${SRCS} Resources/windowbar.qrc)
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt::Core Qt::CorePrivate Qt::Gui Qt::GuiPrivate Qt::Widgets Qt::WidgetsPrivate)
+target_include_directories(${PROJECT_NAME} PUBLIC Include)

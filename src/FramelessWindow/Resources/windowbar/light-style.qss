@@ -1,4 +1,4 @@
-/* Window bar */
+﻿/* Window bar */
 
 QWK--WindowBar[bar-active=true] {
     background-color: #195ABE;
@@ -63,7 +63,7 @@ QWK--WindowBar>QAbstractButton#close-button:pressed {
 /* Icon button */
 
 QWK--WindowBar>QAbstractButton#icon-button {
-    qproperty-iconNormal: url(":/app/example.png");
+    /*qproperty-iconNormal: url(":/app/example.png");*/
     qproperty-iconSize: 18px 18px;
     min-width: 40px;
     border: none;

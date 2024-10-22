@@ -1,4 +1,4 @@
-<RCC>
+﻿<RCC>
     <qresource prefix="/">
         <file>windowbar/close.svg</file>
         <file>windowbar/fullscreen.svg</file>
@@ -6,5 +6,7 @@
         <file>windowbar/minimize.svg</file>
         <file>windowbar/restore.svg</file>
         <file>windowbar/more-line.svg</file>
+        <file>windowbar/dark-style.qss</file>
+        <file>windowbar/light-style.qss</file>
     </qresource>
 </RCC>

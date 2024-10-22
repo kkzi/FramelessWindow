@@ -1,4 +1,4 @@
-// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
+﻿// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
 // Copyright (C) 2021-2023 wangwenx190 (Yuhang Zhao)
 // SPDX-License-Identifier: Apache-2.0
 
@@ -18,9 +18,11 @@
 #include "../core/windowagentbase_p.h"
 #include "widgetwindowagent.h"
 
-namespace QWK {
+namespace QWK
+{
 
-    class WidgetWindowAgentPrivate : public WindowAgentBasePrivate {
+    class WidgetWindowAgentPrivate : public WindowAgentBasePrivate
+    {
         Q_DECLARE_PUBLIC(WidgetWindowAgent)
     public:
         WidgetWindowAgentPrivate();
@@ -42,6 +44,6 @@ namespace QWK {
 #endif
     };
 
-}
+}  // namespace QWK
 
-#endif // WIDGETWINDOWAGENTPRIVATE_H
+#endif  // WIDGETWINDOWAGENTPRIVATE_H

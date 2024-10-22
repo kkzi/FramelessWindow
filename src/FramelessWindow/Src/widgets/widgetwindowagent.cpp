@@ -1,17 +1,18 @@
-// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
+﻿// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
 // Copyright (C) 2021-2023 wangwenx190 (Yuhang Zhao)
 // SPDX-License-Identifier: Apache-2.0
 
 #include "widgetwindowagent.h"
 #include "widgetwindowagent_p.h"
 
-#include <QtGui/QtEvents>
-#include <QtGui/QPainter>
 #include <QtCore/QDebug>
+#include <QtGui/QPainter>
+#include <QtGui/QtEvents>
 
 #include "widgetitemdelegate_p.h"
 
-namespace QWK {
+namespace QWK
+{
 
     /*!
         \class WidgetWindowAgent
@@ -25,14 +26,16 @@ namespace QWK {
 
     WidgetWindowAgentPrivate::~WidgetWindowAgentPrivate() = default;
 
-    void WidgetWindowAgentPrivate::init() {
+    void WidgetWindowAgentPrivate::init()
+    {
     }
 
     /*!
         Constructs a widget agent, it's better to set the widget to setup as \a parent.
     */
     WidgetWindowAgent::WidgetWindowAgent(QObject *parent)
-        : WidgetWindowAgent(*new WidgetWindowAgentPrivate(), parent) {
+        : WidgetWindowAgent(*new WidgetWindowAgentPrivate(), parent)
+    {
     }
 
     /*!
@@ -44,19 +47,22 @@ namespace QWK {
         Installs the window agent on the widget. The window agent will take over some of the window
         events, making the window look frameless.
     */
-    bool WidgetWindowAgent::setup(QWidget *w) {
+    bool WidgetWindowAgent::setup(QWidget *w)
+    {
         Q_ASSERT(w);
-        if (!w) {
+        if (!w)
+        {
             return false;
         }
 
         Q_D(WidgetWindowAgent);
-        if (d->hostWidget) {
+        if (d->hostWidget)
+        {
             return false;
         }
 
         w->setAttribute(Qt::WA_DontCreateNativeAncestors);
-        w->setAttribute(Qt::WA_NativeWindow); // Create new window id
+        w->setAttribute(Qt::WA_NativeWindow);  // Create new window id
 
         d->setup(w, new WidgetItemDelegate());
         d->hostWidget = w;
@@ -70,7 +76,8 @@ namespace QWK {
     /*!
         Returns the title bar widget.
     */
-    QWidget *WidgetWindowAgent::titleBar() const {
+    QWidget *WidgetWindowAgent::titleBar() const
+    {
         Q_D(const WidgetWindowAgent);
         return static_cast<QWidget *>(d->context->titleBar());
     }
@@ -79,9 +86,11 @@ namespace QWK {
         Sets the title bar widget, all system button and hit-test visible widget references that
         have been set will be removed.
     */
-    void WidgetWindowAgent::setTitleBar(QWidget *w) {
+    void WidgetWindowAgent::setTitleBar(QWidget *w)
+    {
         Q_D(WidgetWindowAgent);
-        if (!d->context->setTitleBar(w)) {
+        if (!d->context->setTitleBar(w))
+        {
             return;
         }
 #ifdef Q_OS_MAC
@@ -93,7 +102,8 @@ namespace QWK {
     /*!
         Returns the system button of the given type.
     */
-    QWidget *WidgetWindowAgent::systemButton(SystemButton button) const {
+    QWidget *WidgetWindowAgent::systemButton(SystemButton button) const
+    {
         Q_D(const WidgetWindowAgent);
         return static_cast<QWidget *>(d->context->systemButton(button));
     }
@@ -102,9 +112,11 @@ namespace QWK {
         Sets the system button of the given type, the system buttons always receive mouse events so
         you don't need to call \c setHitTestVisible for them.
     */
-    void WidgetWindowAgent::setSystemButton(SystemButton button, QWidget *w) {
+    void WidgetWindowAgent::setSystemButton(SystemButton button, QWidget *w)
+    {
         Q_D(WidgetWindowAgent);
-        if (!d->context->setSystemButton(button, w)) {
+        if (!d->context->setSystemButton(button, w))
+        {
             return;
         }
         Q_EMIT systemButtonChanged(button, w);
@@ -113,7 +125,8 @@ namespace QWK {
     /*!
         Returns \a true if the widget can receive mouse events on title bar.
     */
-    bool WidgetWindowAgent::isHitTestVisible(const QWidget *w) const {
+    bool WidgetWindowAgent::isHitTestVisible(const QWidget *w) const
+    {
         Q_D(const WidgetWindowAgent);
         return d->context->isHitTestVisible(w);
     }
@@ -123,7 +136,8 @@ namespace QWK {
         You're supposed to make sure that the specified widget \a w is a child or descendant
         of the title bar widget.
     */
-    void WidgetWindowAgent::setHitTestVisible(QWidget *w, bool visible) {
+    void WidgetWindowAgent::setHitTestVisible(QWidget *w, bool visible)
+    {
         Q_D(WidgetWindowAgent);
         d->context->setHitTestVisible(w, visible);
     }
@@ -132,7 +146,8 @@ namespace QWK {
         \internal
     */
     WidgetWindowAgent::WidgetWindowAgent(WidgetWindowAgentPrivate &d, QObject *parent)
-        : WindowAgentBase(d, parent) {
+        : WindowAgentBase(d, parent)
+    {
         d.init();
     }
 
@@ -148,4 +163,4 @@ namespace QWK {
         This signal is emitted when a system button is replaced.
     */
 
-}
+}  // namespace QWK

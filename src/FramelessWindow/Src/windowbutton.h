@@ -1,4 +1,4 @@
-// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
+﻿// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
 // Copyright (C) 2021-2023 wangwenx190 (Yuhang Zhao)
 // SPDX-License-Identifier: Apache-2.0
 
@@ -7,11 +7,13 @@
 
 #include <QtWidgets/QPushButton>
 
-namespace QWK {
+namespace QWK
+{
 
     class WindowButtonPrivate;
 
-    class WindowButton : public QPushButton {
+    class WindowButton : public QPushButton
+    {
         Q_OBJECT
         Q_DECLARE_PRIVATE(WindowButton)
         Q_PROPERTY(QIcon iconNormal READ iconNormal WRITE setIconNormal FINAL)
@@ -45,6 +47,6 @@ namespace QWK {
         QScopedPointer<WindowButtonPrivate> d_ptr;
     };
 
-}
+}  // namespace QWK
 
-#endif // WINDOWBUTTON_H
+#endif  // WINDOWBUTTON_H

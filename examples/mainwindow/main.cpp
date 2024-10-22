@@ -1,12 +1,12 @@
-// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
-// Copyright (C) 2021-2023 wangwenx190 (Yuhang Zhao)
-// SPDX-License-Identifier: Apache-2.0
-
+#include <FramelessWindow/FramelessDialog.h>
 #include <FramelessWindow/FramelessWindow.h>
+#include <QApplication>
+#include <QLabel>
 #include <QMenuBar>
-#include <QtWidgets/QApplication>
+#include <QMessageBox>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     qputenv("QT_WIN_DEBUG_CONSOLE", "attach");
     qputenv("QSG_INFO", "1");
     // qputenv("QT_WIDGETS_HIGHDPI_DOWNSCALE", "1");
@@ -16,19 +16,30 @@ int main(int argc, char *argv[]) {
     // qputenv("QT_QPA_DISABLE_REDIRECTION_SURFACE", "1");
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-    QGuiApplication::setHighDpiScaleFactorRoundingPolicy(
-        Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+    QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 #endif
 
     QCoreApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
     QApplication a(argc, argv);
 
     FramelessWindow w;
+    w.setWindowIcon(QIcon(":/app/example.png"));
     w.resize(900, 480);
-    auto menu = new QMenuBar(&w);
-    menu->addMenu("File");
-    menu->addMenu("View");
-    w.setMenuBar(menu);
+    auto bar = new QMenuBar(&w);
+    auto filemenu = bar->addMenu("File");
+    filemenu->addAction("&Open");
+    auto helpmenu = bar->addMenu("Help");
+    helpmenu->addAction("About Qt", [&w] { QMessageBox::aboutQt(&w); });
+    helpmenu->addAction("About", [&w] {
+        auto label = new QLabel("Hello world");
+        label->setAlignment(Qt::AlignCenter);
+        FramelessDialog dialog(&w);
+        dialog.setWindowTitle("Help");
+        dialog.setFixedSize(400, 240);
+        dialog.setCentralWidget(label);
+        dialog.exec();
+    });
+    w.setMenuBar(bar);
     w.show();
 
     return a.exec();

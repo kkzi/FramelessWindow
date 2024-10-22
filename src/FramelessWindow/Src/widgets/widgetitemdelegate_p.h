@@ -1,4 +1,4 @@
-// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
+﻿// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
 // Copyright (C) 2021-2023 wangwenx190 (Yuhang Zhao)
 // SPDX-License-Identifier: Apache-2.0
 
@@ -20,9 +20,11 @@
 #include "../core/windowitemdelegate_p.h"
 #include "qwkwidgetsglobal.h"
 
-namespace QWK {
+namespace QWK
+{
 
-    class QWK_WIDGETS_EXPORT WidgetItemDelegate : public WindowItemDelegate {
+    class QWK_WIDGETS_EXPORT WidgetItemDelegate : public WindowItemDelegate
+    {
     public:
         WidgetItemDelegate();
         ~WidgetItemDelegate() override;
@@ -48,10 +50,9 @@ namespace QWK {
         void setGeometry(QObject *host, const QRect &rect) override;
         void bringWindowToTop(QObject *host) const override;
 
-        WinIdChangeEventFilter *
-            createWinIdEventFilter(QObject *host, AbstractWindowContext *context) const override;
+        WinIdChangeEventFilter *createWinIdEventFilter(QObject *host, AbstractWindowContext *context) const override;
     };
 
-}
+}  // namespace QWK
 
-#endif // WIDGETITEMDELEGATE_P_H
+#endif  // WIDGETITEMDELEGATE_P_H

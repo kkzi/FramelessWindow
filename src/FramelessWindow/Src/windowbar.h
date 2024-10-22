@@ -1,20 +1,22 @@
-// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
+﻿// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
 // Copyright (C) 2021-2023 wangwenx190 (Yuhang Zhao)
 // SPDX-License-Identifier: Apache-2.0
 
 #ifndef WINDOWBAR_H
 #define WINDOWBAR_H
 
-#include <QFrame>
 #include <QAbstractButton>
-#include <QMenuBar>
+#include <QFrame>
 #include <QLabel>
+#include <QMenuBar>
 
-namespace QWK {
+namespace QWK
+{
 
     class WindowBarPrivate;
 
-    class WindowBar : public QFrame {
+    class WindowBar : public QFrame
+    {
         Q_OBJECT
         Q_DECLARE_PRIVATE(WindowBar)
     public:
@@ -69,6 +71,6 @@ namespace QWK {
         QScopedPointer<WindowBarPrivate> d_ptr;
     };
 
-}
+}  // namespace QWK
 
-#endif // WINDOWBAR_H
+#endif  // WINDOWBAR_H

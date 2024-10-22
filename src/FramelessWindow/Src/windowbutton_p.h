@@ -1,4 +1,4 @@
-// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
+﻿// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
 // Copyright (C) 2021-2023 wangwenx190 (Yuhang Zhao)
 // SPDX-License-Identifier: Apache-2.0
 
@@ -7,9 +7,11 @@
 
 #include "windowbutton.h"
 
-namespace QWK {
+namespace QWK
+{
 
-    class WindowButtonPrivate {
+    class WindowButtonPrivate
+    {
         Q_DECLARE_PUBLIC(WindowButton)
     public:
         WindowButtonPrivate();
@@ -26,6 +28,6 @@ namespace QWK {
         void reloadIcon();
     };
 
-}
+}  // namespace QWK
 
-#endif // WINDOWBUTTONPRIVATE_H
+#endif  // WINDOWBUTTONPRIVATE_H

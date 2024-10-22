@@ -1,4 +1,4 @@
-// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
+﻿// Copyright (C) 2023-2024 Stdware Collections (https://www.github.com/stdware)
 // Copyright (C) 2021-2023 wangwenx190 (Yuhang Zhao)
 // SPDX-License-Identifier: Apache-2.0
 
@@ -17,6 +17,7 @@
 #include <shellscalingapi.h>
 #include <dwmapi.h>
 #include <timeapi.h>
+#include <sdkddkver.h>
 
 #include "../qwindowkit_windows.h"
 #include <QtCore/private/qsystemlibrary_p.h>
@@ -439,13 +440,17 @@ namespace QWK {
         return ::GetSystemMetrics(index);
     }
 
-    static inline quint32 getWindowFrameBorderThickness(HWND hwnd) {
+    static inline quint32 getWindowFrameBorderThickness(HWND hwnd)
+    {
+#if defined(WDK_NTDDI_VERSION) and defined(NTDDI_WIN10_CO) and WDK_NTDDI_VERSION > NTDDI_WIN10_CO
         const DynamicApis &apis = DynamicApis::instance();
-        if (UINT result = 0; SUCCEEDED(apis.pDwmGetWindowAttribute(
-                hwnd, _DWMWA_VISIBLE_FRAME_BORDER_THICKNESS, &result, sizeof(result)))) {
+        if (UINT result = 0; SUCCEEDED(apis.pDwmGetWindowAttribute(hwnd, _DWMWA_VISIBLE_FRAME_BORDER_THICKNESS, &result, sizeof(result))))
+        {
             return result;
         }
+#else
         return getSystemMetricsForDpi(SM_CXBORDER, getDpiForWindow(hwnd));
+#endif
     }
 
     static inline quint32 getResizeBorderThickness(HWND hwnd) {

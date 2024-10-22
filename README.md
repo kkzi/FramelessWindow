@@ -9,19 +9,20 @@
 
 ### `FramelessWindow`
 ```cpp
-    FramelessWindow w;
-    w.setWindowIcon(QIcon(":/app/example.png"));
-    w.setWindowTitle(tr("demo"));
-    w.show();
+FramelessWindow w;
+w.setWindowIcon(QIcon(":/app/example.png"));
+w.setWindowTitle(tr("demo"));
+w.show();
 ```
-
+![demo1](assets/demo1.png)
 
 ### `FramelessDialog`
 ```cpp
-    FramelessDialog dialog;
-    dialog.setWindowTitle("Dialog");
-    dialog.setFixedSize(400, 240);
-    dialog.setCentralWidget(new QLabel("Hello world"));
-    dialog.exec();
+FramelessDialog dialog;
+dialog.setWindowTitle("Dialog");
+dialog.setFixedSize(400, 240);
+dialog.setCentralWidget(new QLabel("Hello world"));
+dialog.exec();
 ```
 
+![demo2](assets/demo2.png)

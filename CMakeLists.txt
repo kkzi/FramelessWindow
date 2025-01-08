@@ -37,5 +37,5 @@ endif()
 set(QWINDOWKIT_VERSION ${PROJECT_VERSION})
 set(QWINDOWKIT_INSTALL_NAME ${PROJECT_NAME})
 
-add_subdirectory(src/FramelessWindow)
-add_subdirectory(examples)
+add_subdirectory(Code/FramelessWindow)
+add_subdirectory(Demo/examples)

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.19)
-project(FramelessWindow VERSION 1.2.0.0 LANGUAGES CXX)
+project(FramelessWindow VERSION 1.2.1.0 LANGUAGES CXX)
 
 option(QWINDOWKIT_ENABLE_QT_WINDOW_CONTEXT "Enable Qt Window Context anyway" OFF)
 option(QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS "Enable system borders on Windows" ON)

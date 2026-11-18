@@ -12,8 +12,10 @@ class FramelessDialog : public QDialog
 
 public:
     explicit FramelessDialog(QWidget *parent, Theme theme = Theme::Dark);
-    explicit FramelessDialog(QDialogButtonBox::StandardButtons, QWidget *parget, Theme theme = Theme::Dark);
+    explicit FramelessDialog(QDialogButtonBox::StandardButtons, QWidget *parent, Theme theme = Theme::Dark);
     virtual ~FramelessDialog() override;
+
+    QSize sizeHint() const override;
 
 public:
     void setCentralWidget(QWidget *widget);

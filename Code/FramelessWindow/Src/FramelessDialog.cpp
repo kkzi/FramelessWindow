@@ -29,10 +29,21 @@ FramelessDialog::FramelessDialog(QDialogButtonBox::StandardButtons buttons, QWid
     connect(box, &QDialogButtonBox::accepted, this, &FramelessDialog::onAccepted);
     connect(box, &QDialogButtonBox::rejected, this, &FramelessDialog::onRejected);
     connect(helper_, &FramelessHelper::themeChanged, this, &FramelessDialog::themeChanged);
+
+    // Keep a usable minimum size so the window bar and the button box never
+    // overlap each other in a too-small dialog. See issue #1.
+    setMinimumSize(360, 220);
 }
 
 FramelessDialog::~FramelessDialog()
 {
+}
+
+QSize FramelessDialog::sizeHint() const
+{
+    // Same rationale as FramelessWindow::sizeHint(): keep a usable default size
+    // for a dialog with no explicit geometry.
+    return QDialog::sizeHint().expandedTo(QSize(460, 320));
 }
 
 void FramelessDialog::setCentralWidget(QWidget *widget)

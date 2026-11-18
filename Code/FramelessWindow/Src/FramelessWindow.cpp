@@ -18,10 +18,26 @@ FramelessWindow::FramelessWindow(QWidget *parent, Theme theme)
 {
     setMenuWidget(helper_->titleBar());
     connect(helper_, &FramelessHelper::themeChanged, this, &FramelessWindow::themeChanged);
+
+    // Keep a sane minimum size. The window bar layout (window icon + menu bar +
+    // caption + window buttons) needs ~280 logical px to show even a small menu
+    // bar; below that the menu bar collapses into its overflow ("...") extension
+    // button and the window buttons start overlapping each other. See issue #1.
+    setMinimumSize(400, 160);
 }
 
 FramelessWindow::~FramelessWindow()
 {
+}
+
+QSize FramelessWindow::sizeHint() const
+{
+    // An empty QMainWindow has an almost empty layout, so its default size hint
+    // is tiny (200x100 without a central widget). A window shown with no explicit
+    // size then squeezes the window bar and the menu bar collapses into its
+    // overflow button. Fall back to a regular main window size until the user
+    // resizes or sets a central widget that wants more space.
+    return QMainWindow::sizeHint().expandedTo(QSize(960, 600));
 }
 
 void FramelessWindow::setMenuBar(QMenuBar *menubar)

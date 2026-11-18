@@ -14,6 +14,7 @@ public:
 public:
     explicit FramelessWindow(QWidget *parent = nullptr, Theme theme = Theme::Dark);
     virtual ~FramelessWindow() override;
+    QSize sizeHint() const override;
 
 public:
     void setMenuBar(QMenuBar *menubar);
